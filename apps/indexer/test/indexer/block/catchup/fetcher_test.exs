@@ -7,8 +7,9 @@ defmodule Indexer.Block.Catchup.FetcherTest do
 
   alias Explorer.Chain
   alias Explorer.Chain.Block.Reward
-  alias Indexer.{Block, CoinBalance, InternalTransaction, Token, TokenBalance}
+  alias Indexer.{Block, CoinBalance, Token}
   alias Indexer.Block.Catchup.Fetcher
+  alias Indexer.Fetcher.{InternalTransaction, TokenBalance}
 
   @moduletag capture_log: true
 

@@ -11,10 +11,11 @@ defmodule Indexer.Block.Fetcher do
 
   alias EthereumJSONRPC.{Blocks, FetchedBeneficiaries}
   alias Explorer.Chain.{Address, Block, Hash, Import, Transaction}
-  alias Indexer.{AddressExtraction, CoinBalance, MintTransfer, ReplacedTransaction, Token, TokenTransfers, Tracer}
+  alias Indexer.{AddressExtraction, CoinBalance, MintTransfer, Token, TokenTransfers, Tracer}
   alias Indexer.Address.{CoinBalances, TokenBalances}
   alias Indexer.Block.Fetcher.Receipts
   alias Indexer.Block.{Reward, Transform}
+  alias Indexer.Fetcher.ReplacedTransaction
 
   @type address_hash_to_fetched_balance_block_number :: %{String.t() => Block.block_number()}
 
@@ -221,7 +222,7 @@ defmodule Indexer.Block.Fetcher do
       %Transaction{block_hash: nil} ->
         []
     end)
-    |> ReplacedTransaction.Fetcher.async_fetch(10_000)
+    |> ReplacedTransaction.async_fetch(10_000)
   end
 
   def async_import_replaced_transactions(_), do: :ok

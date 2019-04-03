@@ -150,10 +150,10 @@ defmodule Indexer.Block.Uncle.Fetcher do
            |> fork_transactions()
            |> Chain.import() do
       # * CoinBalance.Fetcher.async_fetch_balances is not called because uncles don't affect balances
-      # * InternalTransaction.Fetcher.async_fetch is not called because internal transactions are based on transaction
+      # * InternalTransaction.async_fetch is not called because internal transactions are based on transaction
       #   hash, which is shared with transaction on consensus blocks.
       # * Token.Fetcher.async_fetch is not called because the tokens only matter on consensus blocks
-      # * TokenBalance.Fetcher.async_fetch is not called because it uses block numbers from consensus, not uncles
+      # * TokenBalance.async_fetch is not called because it uses block numbers from consensus, not uncles
 
       block_second_degree_relations
       |> Enum.map(& &1.uncle_hash)
